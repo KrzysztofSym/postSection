@@ -11,13 +11,13 @@
     --a-fs: .7rem;    --a-fs-media: 1.1rem;
     --li-fs: .7rem;   --li-fs-media: 1.1rem;    
 
-    --clr-bg-main: #ddf1f1;
-    --clr-bg-pri: #a9e5e7;
-    --clr-bg-sec: #f3fafa;
-    --clr-acc-main: #00bea6;
+    --clr-bg-main: #56b6f7;
+    --clr-bg-pri: #65c2f9;
+    --clr-bg-sec: #d0efff;
+    --clr-acc-main: #f2a72c;
     --clr-acc-pri: #009885;
-    --clr-acc-sec: #33cbb8;
-    --clr-acc-thi: #d80000;
+    --clr-acc-sec: #fed939;
+    --clr-acc-thi: #f9d79f;
     --clr-acc-four: #ad0000;
     --clr-acc-fif: #e03333;
     --clr-text-main: #67696a;
@@ -44,7 +44,7 @@ html {
 body {
     font-family: var(--main-ff);
     font-size: var(--p-fs);
-    background: var(--clr-bg-main);
+    background: linear-gradient(var(--clr-bg-main), var(--clr-bg-pri));
     color: var(--clr-text-main);
     width: 100%;
     min-height: 100vh;
@@ -105,6 +105,39 @@ img {
     /* animation: scaleUp 1s ease-in-out;
     transform-origin: center center; */
 
+@keyframes fromBot {
+    from {
+        opacity: 0;
+        transform: translateY(1.6rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-1.6rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-1.6rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /*===== BUTTONS =====*/
 
 .btn {
@@ -137,26 +170,30 @@ body {
 }
 
 .container {
-    min-width: 500px;
-    background-color: #fff;
+    width: 500px;
+    background-color: var(--clr-bg-sec);
     position: relative;
     animation: scaleUp 1s ease-in-out;
     transform-origin: center center;
-    box-shadow: 0px 8px 30px -10px var(--clr-acc-sec);
+    box-shadow: 0px 8px 30px -10px var(--clr-bg-sec);
     padding: 1rem;
     border-radius: .5rem;
 }
 
 p {
     margin-bottom: 1rem;
+    animation: fromTop .6s ease-in-out .5s backwards;
 }
 
 textarea {
+    background: transparent;
     border: none;
     resize: none;
     padding: .5rem;
     width: 100%;
     outline: none;
+    animation: fromLeft .9s ease-in-out .5s backwards;
+
 }
 
 .btns {
@@ -179,6 +216,8 @@ svg:hover {
 
 .icon {
     position: relative;
+    cursor: pointer;
+    animation: fromBot .5s ease-in-out .5s backwards;
     z-index: 2;
 }
 
@@ -206,12 +245,12 @@ svg:hover {
 
 .icon:nth-child(1)::after { content: "Attach photo"; }
 .icon:nth-child(2)::after { content: "Attach files"; }
-.icon:nth-child(3)::after { content: "Leave feedback"; }
+.icon:nth-child(3)::after { content: "Emoji"; }
 
 
 .icon:nth-child(1) svg {
     fill: var(--clr-acc-main);
-    /* color: var(--clr-acc-pri); */
+    color: var(--clr-acc-thi);
 }
 
 .icon:nth-child(2) svg {
@@ -219,6 +258,13 @@ svg:hover {
 }
 
 .icon:nth-child(3) svg {
-    /* color: var(--clr-acc-sec); */
-    fill: var(--clr-acc-thi);
+    fill: var(--clr-acc-sec);
+}
+
+.icon:nth-child(1) {animation-delay: .8s;}
+.icon:nth-child(2) {animation-delay: .95s;}
+.icon:nth-child(3) {animation-delay: 1.05s;}
+
+input {
+   display: none;
 }
